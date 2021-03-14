@@ -13,5 +13,7 @@ target/
 *.iml
 .idea/
 .settings/
+.gradle/
+
 
 
