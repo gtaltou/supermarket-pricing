@@ -1,10 +1,19 @@
 package services;
 
 import domain.ProductItem;
+import exceptions.SupermarketPricingException;
 
 public class PackagePricingBusinessService extends PricingBusinessService {
 
-    //Calculating total price
+    /**
+     * Calculating total price
+     *
+     * @param theProductItem
+     * @param thePurchasedItemQuantity
+     * @return
+     * @throws SupermarketPricingException
+     */
+    @Override
     public float computeTotalPrice(ProductItem theProductItem, float thePurchasedItemQuantity) {
 
         int numberOfDiscount = theProductItem.getItemDiscountValue()._1();
@@ -19,21 +28,53 @@ public class PackagePricingBusinessService extends PricingBusinessService {
 
         return discountedPrice + unDiscountedPrice;
     }
-   //Compute applied discount number of times
-    private int computeAppliedDiscountNumberOfTimes(int numberOfDiscount, float thePurchasedItemQuantity){
-        return (int) (thePurchasedItemQuantity / numberOfDiscount);
+
+    /**
+     * Compute applied discount number of times
+     * @param numberOfDiscount
+     * @param thePurchasedItemQuantity
+     * @return
+     * @throws ArithmeticException
+     */
+    private int computeAppliedDiscountNumberOfTimes(int numberOfDiscount, float thePurchasedItemQuantity) throws ArithmeticException {
+       return (int) (thePurchasedItemQuantity / numberOfDiscount);
     }
-    //Compute number of full priced products
-    private float computeNumberOfFullPricedProducts(int numberOfDiscount, float thePurchasedItemQuantity){
-        return thePurchasedItemQuantity % numberOfDiscount;
+
+    /**
+     * Compute number of full priced products
+     * @param numberOfDiscount
+     * @param thePurchasedItemQuantity
+     * @return
+     * @throws ArithmeticException
+     */
+    private float computeNumberOfFullPricedProducts(int numberOfDiscount, float thePurchasedItemQuantity) throws ArithmeticException {
+       return thePurchasedItemQuantity % numberOfDiscount;
     }
-    //Compute reduced prices
-    private float computeDiscountedPrices(ProductItem theProductItem, int appliedDiscountNumberOfTimes, int numberOfDiscount, float itemReductionValue){
-        return appliedDiscountNumberOfTimes * theProductItem.getItemPrice() * numberOfDiscount * itemReductionValue;
+
+    /**
+     * Compute reduced prices
+     * @param theProductItem
+     * @param appliedDiscountNumberOfTimes
+     * @param numberOfDiscount
+     * @param itemReductionValue
+     * @return
+     * @throws ArithmeticException
+     */
+    private float computeDiscountedPrices(ProductItem theProductItem, int appliedDiscountNumberOfTimes, int numberOfDiscount, float itemReductionValue) throws ArithmeticException {
+      return  appliedDiscountNumberOfTimes * theProductItem.getItemPrice() * numberOfDiscount * itemReductionValue;
     }
-    //Compute unreduced prices
-    private float computeUnDiscountedPrices(ProductItem theProductItem, float numberOfFullPricedProducts){
-        return theProductItem.getItemPrice() * numberOfFullPricedProducts;
+
+    /**
+     * Compute unreduced prices
+     * @param theProductItem
+     * @param theNumberOfFullPricedProducts
+     * @return
+     * @throws ArithmeticException
+     */
+
+    private float computeUnDiscountedPrices(ProductItem theProductItem, float theNumberOfFullPricedProducts) throws ArithmeticException {
+        return theProductItem.getItemPrice() * theNumberOfFullPricedProducts;
+
     }
 }
 

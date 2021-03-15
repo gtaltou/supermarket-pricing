@@ -10,7 +10,14 @@ public class CustomerCartBusinessService {
 
     private Customer customer = new Customer();
 
-    //Adding an item to the cart
+
+    /**
+     * Adding an item to the cart
+     *
+     * @param theProductItem
+     * @param thePurchasedQuantity
+     * @throws SupermarketPricingException
+     */
     public void addProductItemToCart(ProductItem theProductItem, float thePurchasedQuantity) throws SupermarketPricingException {
         if (getCustomer().getCart().containsKey(theProductItem)) {
             if (theProductItem.isByItemWeight() && (thePurchasedQuantity - (int) thePurchasedQuantity) != 0) {
@@ -23,7 +30,13 @@ public class CustomerCartBusinessService {
         }
     }
 
-    //Removal of an item from the cart
+    /**
+     * Removal of an item from the cart
+     *
+     * @param theProductItem
+     * @param theNumber
+     * @throws SupermarketPricingException
+     */
     public void removeProductItemFromCart(ProductItem theProductItem, float theNumber) {
         if (getCustomer().getCart().containsKey(theProductItem)) {
             Match((Float) getCustomer().getCart().get(theProductItem) - theNumber).of(
