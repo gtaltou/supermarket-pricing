@@ -1,5 +1,6 @@
 
 import domain.ProductItem;
+import exceptions.CannotBuyHalfOfAnItemException;
 import exceptions.SupermarketPricingException;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
@@ -66,7 +67,7 @@ public class SuperMarketBusinessServiceTest {
     }
 
     @Test
-    public void test_the_item_prices_must_be_correct_when_billing() throws SupermarketPricingException {
+    public void test_the_item_prices_must_be_correct_when_billing() throws CannotBuyHalfOfAnItemException,SupermarketPricingException {
 
         //Data initialization
         aSuperMarketBusinessService = new SuperMarketBusinessService();

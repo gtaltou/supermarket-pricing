@@ -1,17 +1,16 @@
 package services;
 
 import domain.ProductItem;
-import exceptions.SupermarketPricingException;
 
 public class PackagePricingBusinessService extends PricingBusinessService {
 
     /**
      * Calculating total price
+
+     * @param theProductItem : The product item
+     * @param thePurchasedItemQuantity ; The purchased item quantity
+     * @return : The return statement
      *
-     * @param theProductItem
-     * @param thePurchasedItemQuantity
-     * @return
-     * @throws SupermarketPricingException
      */
     @Override
     public float computeTotalPrice(ProductItem theProductItem, float thePurchasedItemQuantity) {
@@ -31,10 +30,10 @@ public class PackagePricingBusinessService extends PricingBusinessService {
 
     /**
      * Compute applied discount number of times
-     * @param numberOfDiscount
-     * @param thePurchasedItemQuantity
-     * @return
-     * @throws ArithmeticException
+     * @param numberOfDiscount : The number of discount
+     * @param thePurchasedItemQuantity : The purchased item quantity
+     * @return : The return statement
+     * @throws ArithmeticException : The arithmetic exception
      */
     private int computeAppliedDiscountNumberOfTimes(int numberOfDiscount, float thePurchasedItemQuantity) throws ArithmeticException {
        return (int) (thePurchasedItemQuantity / numberOfDiscount);
@@ -42,10 +41,10 @@ public class PackagePricingBusinessService extends PricingBusinessService {
 
     /**
      * Compute number of full priced products
-     * @param numberOfDiscount
-     * @param thePurchasedItemQuantity
-     * @return
-     * @throws ArithmeticException
+     * @param numberOfDiscount : The number of discount
+     * @param thePurchasedItemQuantity : The purchased item quantity
+     * @return : The return statement
+     * @throws ArithmeticException : The arithmetic exception
      */
     private float computeNumberOfFullPricedProducts(int numberOfDiscount, float thePurchasedItemQuantity) throws ArithmeticException {
        return thePurchasedItemQuantity % numberOfDiscount;
@@ -53,12 +52,12 @@ public class PackagePricingBusinessService extends PricingBusinessService {
 
     /**
      * Compute reduced prices
-     * @param theProductItem
-     * @param appliedDiscountNumberOfTimes
-     * @param numberOfDiscount
-     * @param itemReductionValue
-     * @return
-     * @throws ArithmeticException
+     * @param theProductItem : The product item
+     * @param appliedDiscountNumberOfTimes : The applied discount number of times
+     * @param numberOfDiscount : The number of discount
+     * @param itemReductionValue : The item discounted value
+     * @return : The return statement
+     * @throws ArithmeticException : The arithmetic exception
      */
     private float computeDiscountedPrices(ProductItem theProductItem, int appliedDiscountNumberOfTimes, int numberOfDiscount, float itemReductionValue) throws ArithmeticException {
       return  appliedDiscountNumberOfTimes * theProductItem.getItemPrice() * numberOfDiscount * itemReductionValue;
@@ -66,10 +65,10 @@ public class PackagePricingBusinessService extends PricingBusinessService {
 
     /**
      * Compute unreduced prices
-     * @param theProductItem
-     * @param theNumberOfFullPricedProducts
-     * @return
-     * @throws ArithmeticException
+     * @param theProductItem : The product item
+     * @param theNumberOfFullPricedProducts : The number of full price products
+     * @return : the return statement
+     * @throws ArithmeticException : The arithmetic exception
      */
 
     private float computeUnDiscountedPrices(ProductItem theProductItem, float theNumberOfFullPricedProducts) throws ArithmeticException {

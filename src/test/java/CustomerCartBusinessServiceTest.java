@@ -1,5 +1,6 @@
-import domain.Customer;
 import domain.ProductItem;
+import exceptions.CannotBuyHalfOfAnItemException;
+
 import exceptions.SupermarketPricingException;
 import org.junit.Test;
 import services.CustomerCartBusinessService;
@@ -14,11 +15,10 @@ public class CustomerCartBusinessServiceTest {
 
 
     @Test
-    public void test_add_item_to_cart() throws SupermarketPricingException {
+    public void test_add_item_to_cart() throws CannotBuyHalfOfAnItemException, SupermarketPricingException {
+
         //Data initialization
-
         aCustomerCart = new CustomerCartBusinessService();
-
         aMask = new ProductItem("mask",30,false,null);
         aChocolate = new ProductItem("chocolate",3,false,null);
 
@@ -31,9 +31,9 @@ public class CustomerCartBusinessServiceTest {
     }
 
     @Test
-    public void test_update_value_in_cart() throws SupermarketPricingException {
-        //Data initialization
+    public void test_update_value_in_cart() throws CannotBuyHalfOfAnItemException, SupermarketPricingException {
 
+        //Data initialization
         aCustomerCart = new CustomerCartBusinessService();
         aMask = new ProductItem("mask", 8, false, null);
         aChocolate = new ProductItem("chocolate", 6, false, null);
@@ -48,9 +48,9 @@ public class CustomerCartBusinessServiceTest {
     }
 
     @Test
-    public void test_remove_item_from_cart() throws SupermarketPricingException {
-        //Data initialization
+    public void test_remove_item_from_cart() throws CannotBuyHalfOfAnItemException, SupermarketPricingException {
 
+        //Data initialization
         aCustomerCart = new CustomerCartBusinessService();
         aMask = new ProductItem("aMask", 30,false,null);
         aChocolate = new ProductItem("chocolate", 9, true, null);

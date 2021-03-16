@@ -11,8 +11,8 @@ public class SuperMarketBusinessService {
 
     /**
      * Dealing item in promotion
-     * @param theProductItem
-     * @return
+     * @param theProductItem : The product item
+     * @return : The return statement
      */
     private Optional<Integer> itemInPromotion(ProductItem theProductItem)
     {
@@ -24,8 +24,8 @@ public class SuperMarketBusinessService {
 
     /**
      * Calculating billing
-     * @param theCustomerCartBusinessService
-     * @return
+     * @param theCustomerCartBusinessService : The customer cart business service
+     * @return : The return statement
      */
     //
     public float computeBilling(CustomerCartBusinessService theCustomerCartBusinessService)
@@ -41,38 +41,38 @@ public class SuperMarketBusinessService {
 
     /**
      * Computing package pricing
-     * @param theInputMap
-     * @param theBill
-     * @return
+     * @param theInputMap : The input map
+     * @param theBill : The bill
+     * @return : The return statement
      */
-    //Computing package pricing
+
     public float computePackagePricing(LinkedHashMap<ProductItem, Float> theInputMap, float theBill)
     {
         return theInputMap.entrySet().stream()
                 .filter(item -> itemInPromotion(item.getKey()).isPresent())
                 .map(item -> new PackagePricingBusinessService().computeTotalPrice(item.getKey(), item.getValue()))
-                .reduce(theBill, (item1, item2) -> item1 + item2);
+                .reduce(theBill, Float::sum);
     }
 
     /**
      * Computing default pricing
-     * @param theMapInput
-     * @param theBill
-     * @return
+     * @param theMapInput : The input map
+     * @param theBill : The bill
+     * @return : The return statement
      */
     public float computeDefaultPricing(LinkedHashMap<ProductItem, Float> theMapInput, float theBill)
     {
         return theMapInput.entrySet().stream()
                 .filter(item -> !itemInPromotion(item.getKey()).isPresent())
                 .map(item -> new DefaultPricingBusinessService().computeTotalPrice(item.getKey(), item.getValue()))
-                .reduce(theBill, (item1, item2) -> item1 + item2);
+                .reduce(theBill, Float::sum);
     }
 
     /**
      * Applying réduction
-     * @param theProductItem
-     * @param theNumberToBuy
-     * @param theReduction
+     * @param theProductItem : The proudut Item
+     * @param theNumberToBuy : The item number to buy
+     * @param theReduction  : The reduction
      */
     public void applyDiscount(ProductItem theProductItem, int theNumberToBuy, float theReduction)
     {
@@ -81,7 +81,7 @@ public class SuperMarketBusinessService {
 
     /**
      * Removing reduction
-     * @param theProductItem
+     * @param theProductItem: The product Item
      */
     public void removeDiscount(ProductItem theProductItem)
     {
