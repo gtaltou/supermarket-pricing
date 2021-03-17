@@ -27,7 +27,6 @@ public class SuperMarketBusinessService {
      * @param theCustomerCartBusinessService : The customer cart business service
      * @return : The return statement
      */
-    //
     public float computeBilling(CustomerCartBusinessService theCustomerCartBusinessService)
     {
         LinkedHashMap<ProductItem, Float> mapInput = theCustomerCartBusinessService.getCustomer().getCart();

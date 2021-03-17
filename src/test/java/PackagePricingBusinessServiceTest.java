@@ -1,5 +1,5 @@
 import domain.ProductItem;
-import exceptions.SupermarketPricingException;
+
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import junitparams.JUnitParamsRunner;
@@ -21,7 +21,7 @@ public class PackagePricingBusinessServiceTest {
             "4f, 185f",
             "5f, 235f",
             "7f, 320f"})
-    public void test_reduction_when_condition_reached(float theInputNumber, float theExpectedPrice) throws SupermarketPricingException {
+    public void test_reduction_when_condition_reached(float theInputNumber, float theExpectedPrice){
 
         ////Data initialization
         Tuple2<Integer, Float> inputReduction = Tuple.of(3, 0.9f);
